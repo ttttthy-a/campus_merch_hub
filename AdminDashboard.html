@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Merch Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="AdminDashboard.css">
+</head>
+<body class="font-sans bg-gray-50 min-h-screen">
+    <!-- Main Application Container -->
+    <div id="app">
+        <!-- App will be rendered here by JavaScript -->
+    </div>
+
+    <!-- ============================================
+        ALL COMPONENT TEMPLATES
+    ============================================= -->
+    
+    <!-- 1. ADMIN DASHBOARD TEMPLATE -->
+    <template id="admin-dashboard-template">
+        <div class="admin-dashboard-container p-4 lg:p-6 space-y-6 pb-20">
+            <!-- Dashboard Header -->
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+                    <p class="text-gray-600">Welcome back, Administrator</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <p class="font-medium">Current Month</p>
+                        <p class="text-gray-600 text-sm">November 2024</p>
+                    </div>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-calendar-alt"></i>
+                        Change
+                    </button>
+                </div>
+            </div>
+
+            <!-- Metric Cards -->
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Total Revenue -->
+                <div class="metric-card admin-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Revenue</p>
+                            <h3 class="text-2xl font-bold">₱25,430</h3>
+                            <p class="text-green-600 text-sm">+12% from last month</p>
+                        </div>
+                        <div class="icon-bg-primary">
+                            <i class="fas fa-dollar-sign text-burgundy"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Orders -->
+                <div class="metric-card admin-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Orders</p>
+                            <h3 class="text-2xl font-bold">156</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="status-pending">12 Pending</span> • 
+                                <span class="status-processing">24 Processing</span>
+                            </p>
+                        </div>
+                        <div class="icon-bg-secondary">
+                            <i class="fas fa-shopping-bag text-orange"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Users -->
+                <div class="metric-card admin-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Active Users</p>
+                            <h3 class="text-2xl font-bold">1,243</h3>
+                            <p class="text-green-600 text-sm">+8% from last month</p>
+                        </div>
+                        <div class="icon-bg-primary">
+                            <i class="fas fa-users text-burgundy"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="metric-card admin-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Products</p>
+                            <h3 class="text-2xl font-bold">89</h3>
+                            <p class="text-gray-600 text-sm">23 Pre-order items</p>
+                        </div>
+                        <div class="icon-bg-secondary">
+                            <i class="fas fa-box text-orange"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verification -->
+                <div class="metric-card admin-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Verifications</p>
+                            <h3 class="text-2xl font-bold">8</h3>
+                            <p class="text-amber-600 text-sm">Pending review</p>
+                        </div>
+                        <div class="icon-bg-primary">
+                            <i class="fas fa-user-check text-burgundy"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Monthly Sales Trend -->
+                <div class="chart-container">
+                    <h3 class="text-lg font-semibold mb-4">Monthly Sales Trend</h3>
+                    <div class="chart-wrapper">
+                        <div class="chart-placeholder">
+                            <div class="text-center">
+                                <i class="fas fa-chart-line text-4xl text-gray-400 mb-2"></i>
+                                <p>Sales Trend Chart</p>
+                                <p class="text-sm text-gray-500">(Chart visualization)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales by Category -->
+                <div class="chart-container">
+                    <h3 class="text-lg font-semibold mb-4">Sales by Category</h3>
+                    <div class="chart-wrapper">
+                        <div class="chart-placeholder">
+                            <div class="text-center">
+                                <i class="fas fa-chart-pie text-4xl text-gray-400 mb-2"></i>
+                                <p>Category Breakdown</p>
+                                <p class="text-sm text-gray-500">(Pie chart visualization)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department Sales -->
+            <div class="chart-container">
+                <h3 class="text-lg font-semibold mb-4">Department Sales Breakdown</h3>
+                <div class="chart-wrapper">
+                    <div class="chart-placeholder">
+                        <div class="text-center">
+                            <i class="fas fa-university text-4xl text-gray-400 mb-2"></i>
+                            <p>Department Sales Chart</p>
+                            <p class="text-sm text-gray-500">(Bar chart visualization)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 2. PAGE LAYOUT TEMPLATE -->
+    <template id="page-layout-template">
+        <div class="min-h-screen bg-gray-50">
+            <!-- Header -->
+            <header class="sticky-header">
+                <div class="container mx-auto px-4 py-3 lg:py-4">
+                    <div class="flex items-center justify-between">
+                        <!-- Logo and Title -->
+                        <div class="header-logo">
+                            <div class="logo-icon gradient-bg">
+                                <i class="fas fa-box text-yellow-300 text-lg"></i>
+                            </div>
+                            <div class="logo-text">
+                                <h1>Campus Merch Hub</h1>
+                                <p class="hidden sm:block">Your Official Campus Store</p>
+                            </div>
+                        </div>
+
+                        <!-- Desktop Actions -->
+                        <div class="hidden-mobile items-center gap-4">
+                            <!-- User info will be inserted here -->
+                        </div>
+
+                        <!-- Mobile Actions -->
+                        <div class="flex lg:hidden items-center gap-2">
+                            <button class="btn btn-sm btn-outline toggle-view-btn">
+                                <i class="fas fa-exchange-alt"></i>
+                            </button>
+                            <button class="btn btn-ghost btn-sm logout-btn">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Mobile Menu Button -->
+            <div class="mobile-only">
+                <button class="mobile-menu-btn btn btn-default">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="flex">
+                <!-- Sidebar -->
+                <aside class="sidebar hidden-mobile">
+                    <nav class="space-y-2">
+                        <!-- Navigation will be inserted here -->
+                    </nav>
+                </aside>
+                
+                <!-- Main Content -->
+                <main class="main-content">
+                    <div id="page-content" class="animate-fade-in">
+                        <!-- Page content will be inserted here -->
+                    </div>
+                </main>
+            </div>
+        </div>
+    </template>
+
+    <!-- 3. PRODUCT MANAGEMENT TEMPLATE -->
+    <template id="product-management-template">
+        <div class="product-management p-4 lg:p-6 space-y-4 lg:space-y-6 pb-20 lg:pb-6">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl lg:text-3xl">Product Management</h2>
+                    <p class="text-gray-600 text-sm lg:text-base">Manage your merchandise inventory</p>
+                </div>
+
+                <div class="flex flex-wrap gap-2 lg:gap-3">
+                    <!-- Payment Settings Button -->
+                    <button class="btn btn-outline gap-2 flex-1 sm:flex-none btn-sm payment-settings-btn">
+                        <i class="fas fa-upload"></i>
+                        <span class="hidden sm:inline">Payment Settings</span>
+                    </button>
+
+                    <!-- Export Button -->
+                    <button class="btn btn-outline gap-2 flex-1 sm:flex-none btn-sm export-btn">
+                        <i class="fas fa-download"></i>
+                        <span class="hidden sm:inline">Export</span>
+                    </button>
+
+                    <!-- Add Product Button -->
+                    <button class="btn btn-primary gap-2 add-product-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Product
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="card p-4">
+                <div class="flex gap-4">
+                    <div class="flex-1 relative">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" placeholder="Search products..." class="input pl-10 search-input">
+                    </div>
+                    <select class="select category-filter w-48">
+                        <option value="all">All Categories</option>
+                        <option value="Apparel">Apparel</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Product List -->
+            <div id="product-list" class="grid grid-cols-1 gap-4">
+                <!-- Products will be dynamically inserted here -->
+                <div class="text-center py-8 text-gray-500">
+                    <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                    <p>Loading products...</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 4. ORDER MANAGEMENT TEMPLATE -->
+    <template id="order-management-template">
+        <div class="order-management p-4 lg:p-6 space-y-6 pb-20 bg-gray-50 min-h-screen">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <div>
+                    <h2 class="text-2xl font-semibold">Order Management</h2>
+                    <p class="text-sm text-gray-600">Track and manage customer orders</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <!-- View Mode Selector -->
+                    <select class="select w-44">
+                        <option value="categorized">Categorized View</option>
+                        <option value="table">Table View</option>
+                    </select>
+                    
+                    <!-- Export Report Button -->
+                    <button class="btn btn-primary gap-2 export-report-btn">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-col sm:flex-row items-center gap-3 bg-white p-3 rounded-xl shadow-sm">
+                <div class="relative flex-1 w-full">
+                    <i class="fas fa-search absolute left-3 top-2.5 h-4 w-4 text-gray-400"></i>
+                    <input type="text" placeholder="Search by Order ID or Customer..." class="input pl-9 order-search-input">
+                </div>
+                
+                <!-- Status Filter -->
+                <select class="select w-40">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="completed">Completed</option>
+                </select>
+                
+                <!-- Department Filter -->
+                <select class="select w-48">
+                    <option value="all">All Departments</option>
+                    <option value="CAS">College of Arts & Sciences</option>
+                    <option value="CBA">College of Business Admin</option>
+                    <option value="CCS">College of Computer Studies</option>
+                </select>
+            </div>
+
+            <!-- Content Area -->
+            <div id="order-content" class="space-y-4">
+                <!-- Will be rendered by JS -->
+            </div>
+        </div>
+    </template>
+
+    <!-- 5. DEPARTMENTS TEMPLATE -->
+    <template id="departments-template">
+        <div class="departments-container p-4 lg:p-6 space-y-6">
+            <!-- Header -->
+            <div class="flex items-center gap-4">
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-gray-900">Departments & Users</h2>
+                    <p class="text-gray-600">Manage users across all departments</p>
+                </div>
+                <button class="btn btn-primary gap-2 add-department-btn">
+                    <i class="fas fa-plus"></i>
+                    <span class="hidden sm:inline">Add Department</span>
+                </button>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid grid grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Stats cards will be inserted here -->
+            </div>
+
+            <!-- Departments List -->
+            <div class="space-y-4">
+                <!-- Department cards will be inserted here -->
+            </div>
+        </div>
+    </template>
+
+    <!-- 6. USER VERIFICATION TEMPLATE -->
+    <template id="user-verification-template">
+        <div class="verification-container p-4 lg:p-6 space-y-6">
+            <!-- Header -->
+            <div>
+                <h2 class="text-2xl font-bold text-red-700">User Verification</h2>
+                <p class="text-gray-600">
+                    Review and approve student verification requests for department transfers, course changes, and status updates
+                </p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Stats cards will be inserted here -->
+            </div>
+
+            <!-- Verification Table -->
+            <div class="verification-table-container">
+                <table class="verification-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Request Type</th>
+                            <th>Change Details</th>
+                            <th>Submitted</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Verification rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <!-- 7. COMMUNITY APPROVAL TEMPLATE -->
+    <template id="community-approval-template">
+        <div class="p-4 lg:p-6 space-y-4 lg:space-y-6 pb-20 lg:pb-6">
+            <!-- Header -->
+            <div>
+                <h2 class="text-xl lg:text-3xl font-bold text-gray-900">Community & Design Approval</h2>
+                <p class="text-gray-600 text-sm lg:text-base">Review and approve student submissions</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tabs-list grid grid-cols-3">
+                    <button class="tab-trigger active" data-tab="community-vote">
+                        <span class="hidden lg:inline">Community Vote</span>
+                        <span class="lg:hidden">Vote</span>
+                        <span class="badge ml-2 bg-[#B43A4E] hidden">0</span>
+                    </button>
+                    <button class="tab-trigger" data-tab="designs">
+                        <span class="hidden lg:inline">Design Submission</span>
+                        <span class="lg:hidden">Designs</span>
+                        <span class="badge ml-2 bg-[#B43A4E] hidden">0</span>
+                    </button>
+                    <button class="tab-trigger" data-tab="announcements">
+                        <span class="hidden lg:inline">Announcements</span>
+                        <span class="lg:hidden">News</span>
+                        <span class="badge ml-2 bg-[#B43A4E] hidden">0</span>
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="tab-contents p-6">
+                    <!-- Content will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Modals -->
+            <div id="design-viewer-modal" class="modal-overlay hidden">
+                <div class="modal-content max-w-4xl">
+                    <!-- Design viewer content -->
+                </div>
+            </div>
+
+            <div id="announcement-modal" class="modal-overlay hidden">
+                <div class="modal-content max-w-2xl">
+                    <!-- Announcement form -->
+                </div>
+            </div>
+
+            <div id="vote-modal" class="modal-overlay hidden">
+                <div class="modal-content max-w-2xl">
+                    <!-- Vote form -->
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 8. MERCH RELEASE TEMPLATE -->
+    <template id="merch-release-template">
+        <div class="merch-release-container p-4 lg:p-6 space-y-6">
+            <!-- Header -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Merchandise Release Station</h2>
+                    <p class="text-gray-600">Scan order codes to verify and release purchases</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="stats-card">
+                        <div class="stats-card-primary">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Ready for Pickup</p>
+                            <p class="text-red-600 font-bold">12</p>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-card-success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Released Today</p>
+                            <p class="text-green-600 font-bold">8</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Scanner Section -->
+                <div class="scanner-section">
+                    <h3 class="text-lg font-semibold mb-4">Scan Order</h3>
+                    <!-- Scanner content will be inserted here -->
+                </div>
+
+                <!-- Orders Ready for Pickup -->
+                <div class="scanner-section">
+                    <h3 class="text-lg font-semibold mb-4">Ready for Pickup</h3>
+                    <!-- Orders list will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Mobile Menu Sheet -->
+    <div id="mobile-sheet" class="mobile-sheet hidden">
+        <div class="mobile-sheet-content">
+            <div class="mobile-sheet-header">
+                <h2>Navigation</h2>
+                <button id="close-sheet" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-sheet-body">
+                <nav id="mobile-navigation" class="space-y-2">
+                    <!-- Navigation will be populated -->
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
